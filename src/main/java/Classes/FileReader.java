@@ -9,15 +9,15 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.Scanner;
 import javax.swing.JOptionPane;
-import org.apache.commons.lang3.StringUtils;
+
 
 /**
  *
  * @author alba_
  */
 public class FileReader {
-    String filePath="";
-    String fileData="";
+    String padronPath="";
+    String padronData="";
     String partidosPath="";
     String partidosData="";
 
@@ -31,15 +31,15 @@ public class FileReader {
     String[] padron;
 
     public String getFileData() {
-        return fileData;
+        return padronData;
     }
 
-    public void setFileData(String fileData) {
-        this.fileData = fileData;
+    public void setFileData(String padronData) {
+        this.padronData = padronData;
     }
     
-    public FileReader (String filePath,String partidosData){
-        this.filePath=filePath;
+    public FileReader (String padronPath,String partidosData){
+        this.padronPath=padronPath;
         this.partidosPath=partidosData;
     }
      private void readFile(String padronFile, String partidosFile)throws IOException{
@@ -70,7 +70,7 @@ public class FileReader {
             }
             
         } catch (FileNotFoundException e) {
-        System.out.println("An error occurred.");
+        System.out.println("Ha ocurrido un error =( ");
         e.printStackTrace();
     }
          
@@ -83,22 +83,20 @@ public class FileReader {
         setPartidosData(cleanPartido);
     }
     public void dataLoad() throws IOException{
-        readFile(this.filePath,this.partidosPath);
+        readFile(this.padronPath,this.partidosPath);
 
         //setFileData(getFileData());
         //setPartidosPath(partidosPath);
         spaceRemovers();
-        if (filePath.isEmpty()){
-            JOptionPane.showMessageDialog(null, "No valid File selected");
+        if (padronPath.isEmpty()){
+            JOptionPane.showMessageDialog(null, "Archivo no valido >:v ");
         }
         else{
-        JOptionPane.showMessageDialog(null, """
-                                            Data on Padron File: 
-                                            """+getFileData());
-        JOptionPane.showMessageDialog(null, """
-                                            Data on Partidos File: 
-                                            """ +getPartidosData());
-    }
+            JOptionPane.showMessageDialog(null, "Archivos leidos exitosamente! :D ");
+            }
+        CrearArreglo crearArrays=new CrearArreglo(padronData, partidosData);
+        crearArrays.crearArrays();    
+    
     }
                                        
 }             

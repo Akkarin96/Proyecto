@@ -3,8 +3,6 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package Classes;
-
-import static java.lang.System.console;
 import javax.swing.JOptionPane;
 
 /**
@@ -14,9 +12,9 @@ import javax.swing.JOptionPane;
 public class CrearArreglo {
     String padronData="";
     String partidosData="";
-    short filasPadron=0;
-    short columnasPadron=0;
-    short filasPartidos=0;
+    int filasPadron=0;
+    int columnasPadron=0;
+    int filasPartidos=0;
     String[] padronLineas;
     String[] padronColumnas;
     String[] partidosLineas;
@@ -24,7 +22,19 @@ public class CrearArreglo {
     String[][] padron;
     String[][] partidos;
 
+     public CrearArreglo(String contenidoPadron,String contenidoPartidos){
+        this.padronData=contenidoPadron;
+        this.partidosData=contenidoPartidos;
+    }
+     
+    public String[][] getPartidos() {
+        return partidos;
+    }
 
+    public void setPartidos(String[][] partidos) {
+        this.partidos = partidos;
+    }
+    
     public String[][] getPadron() {
         return padron;
     }
@@ -65,7 +75,7 @@ public class CrearArreglo {
         this.padronColumnas = padronColumnas;
     }
 
-    public short getFilasPartidos() {
+    public int getFilasPartidos() {
         return filasPartidos;
     }
 
@@ -74,7 +84,7 @@ public class CrearArreglo {
     }
     short columnasPartidos=0;
 
-    public short getFilasPadron() {
+    public int getFilasPadron() {
         return filasPadron;
     }
 
@@ -82,7 +92,7 @@ public class CrearArreglo {
         this.filasPadron = filasPadron;
     }
 
-    public short getColumnasPadron() {
+    public int getColumnasPadron() {
         return columnasPadron;
     }
 
@@ -97,17 +107,13 @@ public class CrearArreglo {
     public void setColumnasPartidos(short columnasPartidos) {
         this.columnasPartidos = columnasPartidos;
     }
-    
-    public CrearArreglo(String contenidoPadron,String contenidoPartidos){
-        this.padronData=contenidoPadron;
-        this.partidosData=contenidoPartidos;
-    }
-    
+
     public void crearArrays(){
         ArraySize(padronData,"padron");
         ArraySize(partidosData, "partidos");
-        dataPrint();
-        padronArray();
+        setPadron(llenaArreglos(filasPadron, columnasPadron, padronData));
+        setPartidos(llenaArreglos(filasPartidos, columnasPartidos, partidosData));
+        JOptionPane.showMessageDialog(null,"Creacion y relleno de arrays completa");
     }
     
     private void ArraySize(String data,String contenido){//This method grabs the data from previous files, and defines how many rows/columns will be needed for both Padron/Partidos Array
@@ -127,29 +133,19 @@ public class CrearArreglo {
             setColumnasPartidos(numeroColumnas);
             setFilasPartidos(numeroFilas);
             setPartidosColumnas(columnas);
-            setPartidosLineas(filas);
-        
+            setPartidosLineas(filas);  
+        }   
+    }
+    private String[][] llenaArreglos(int filasMatriz,int columnasMatriz,String archivoData){//this method creates the array according to the given size, splits the data into rows/colums and fill the array
+        String[] filas = archivoData.split("\\r?\\n|\\r");//splits lines into arrays
+        String matriz[][]=new String[filasMatriz][columnasMatriz];
+        for (int x=0;x<=filas.length-1;x++ ){
+            String[] columnas=filas[x].split(",");//splits array into columns
+            for (int y=0;y<=columnas.length-1;y++ ){
+                matriz[x][y]=columnas[y];
+            }
         }
-        
-        
-    }
-    private String[][] padronArray(){
-        padron= new String [filasPadron][columnasPadron];
-        for (int x=0;x<=filasPadron-1;x++){
-            for (int y=0;y<=columnasPadron-1;y++){
-                String[] filas = padronData.split("\\r?\\n|\\r");//splits lines into arrays
-                String[] columnas=filas[x].split(",");//splits array into columns
-                padron[x][y]=columnas[x];
-            }}
-        setPadron(padron);
-        return getPadron();
-    }
-    
-    private void dataPrint(){
-        JOptionPane.showMessageDialog(null, "Filas del Padron:"+ getFilasPadron());
-        JOptionPane.showMessageDialog(null, "Columnas del Padron:"+ getColumnasPadron());
-        JOptionPane.showMessageDialog(null, "Filas del Partido:"+ getFilasPartidos());
-        JOptionPane.showMessageDialog(null, "Columnas del Partido:"+ getColumnasPartidos());
+        return matriz;
     }
     }
     
