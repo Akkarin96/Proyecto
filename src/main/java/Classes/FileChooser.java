@@ -5,13 +5,9 @@
 package Classes;
 
 import java.io.File;
-//Manejo de archivos//
 import javax.swing.JFileChooser;
-//Permite elegir el archivo dentro de la computadora//
 import javax.swing.JOptionPane;
-//Muestra los mensajes graficamente//
 import org.apache.commons.io.FilenameUtils;
-//Para Obtener la ubicacion del archivo//
 
 /**
  *
@@ -19,29 +15,27 @@ import org.apache.commons.io.FilenameUtils;
  */
 public class FileChooser {
     
-    public String obtenerRutaArchivo(){
+    public String getFilePath(){
     FilenameUtils fileUtils=new FilenameUtils();
-    String ubicacionArchivo="";
-    JFileChooser seleccionArchivo = new JFileChooser();
-            int status = seleccionArchivo.showOpenDialog(null);
-            //Despliaga la ventana de busqueda de archivo//
+    String fileName="";
+    JFileChooser chooser = new JFileChooser();
+            int status = chooser.showOpenDialog(null);
             if (status == JFileChooser.APPROVE_OPTION) {
-                File archivo = seleccionArchivo.getSelectedFile();
-                //asignacion del archivo seleccionado a la variable file//
-                if (archivo == null) {
-                    JOptionPane.showMessageDialog(null, "No se selecciono ningun archivo");
+                File file = chooser.getSelectedFile();
+                if (file == null) {
+                    JOptionPane.showMessageDialog(null, "No File Selected!");
                 }
                 else{
-                    String fileExtension=fileUtils.getExtension(seleccionArchivo.getSelectedFile().getAbsolutePath());
-                    //validar el formato del archivo//
+                    String fileExtension=fileUtils.getExtension(chooser.getSelectedFile().getAbsolutePath());
+                    JOptionPane.showMessageDialog(null, fileExtension);
                     if (!fileExtension.equals("txt")){
-                        JOptionPane.showMessageDialog(null, "Archivo invalido");
+                        JOptionPane.showMessageDialog(null, "Invalid File Type!");
                     }
                 else{
-                    ubicacionArchivo = seleccionArchivo.getSelectedFile().getAbsolutePath();
+                    fileName = chooser.getSelectedFile().getAbsolutePath();
                     }
                 }
             }
-        return ubicacionArchivo;
+        return fileName;
     }
 }

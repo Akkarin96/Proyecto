@@ -9,80 +9,97 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.Scanner;
 import javax.swing.JOptionPane;
-
+import org.apache.commons.lang3.StringUtils;
 
 /**
  *
  * @author alba_
  */
 public class FileReader {
-    String rutaArchivo="";
-    
-    
-    
-    private String contenidoArchivo="";
-    
-    
-    public FileReader (String rutaArchivo){
-        this.rutaArchivo=rutaArchivo;
+    String filePath="";
+    String fileData="";
+    String partidosPath="";
+    String partidosData="";
+
+    public String getPartidosData() {
+        return partidosData;
     }
-     private void readFile()throws IOException{
-        String info="";
+
+    public void setPartidosData(String partidosData) {
+        this.partidosData = partidosData;
+    }
+    String[] padron;
+
+    public String getFileData() {
+        return fileData;
+    }
+
+    public void setFileData(String fileData) {
+        this.fileData = fileData;
+    }
+    
+    public FileReader (String filePath,String partidosData){
+        this.filePath=filePath;
+        this.partidosPath=partidosData;
+    }
+     private void readFile(String padronFile, String partidosFile)throws IOException{
+        String data="";
+        Scanner myReader;
+        for (int x=0; x<=1;x++)
         try {
-            File objeto = new File(rutaArchivo);
-            Scanner leerArchivo = new Scanner(objeto);
-            while (leerArchivo.hasNextLine()) {
-                info =info+"\n"+leerArchivo.nextLine();
-                System.out.println(info);
+            if (x==0){
+                File myObj = new File(padronFile);
+                myReader = new Scanner(myObj);
             }
-            leerArchivo.close();
+            else{
+                 File myObj = new File(partidosFile);
+                 myReader = new Scanner(myObj);
+            }
+            while (myReader.hasNextLine()) {
+                data =data+"\n"+myReader.nextLine();
+                System.out.println(data);
+            }
+            myReader.close();
+            //Scanner myReader = new Scanner(myObj);
+            if (x==0){
+               setFileData(data);
+               data="";
+            }
+            else{
+                setPartidosData(data);
+            }
+            
         } catch (FileNotFoundException e) {
-        System.out.println("Ha ocurrido un error X.X ");
+        System.out.println("An error occurred.");
         e.printStackTrace();
-        //Se lee linea por linea del archivo y se asigna a una variable//
     }
-        
-         setContenidoArchivo(info);
          
   }
      
     private void spaceRemovers(){
-        String sinEspacios = getContenidoArchivo().replaceAll("[\\s&&[^\\n]]+", " ")
-                .replaceAll("(?m)^\\s|\\s$", "").replaceAll("\\n+", "\n")
-                .replaceAll("^\n|\n$", "") ;
-        setContenidoArchivo(sinEspacios);
+        String withoutWhitespace = getFileData().replaceAll("[\\s&&[^\\n]]+", " ").replaceAll("(?m)^\\s|\\s$", "").replaceAll("\\n+", "\n").replaceAll("^\n|\n$", "") ;
+        setFileData(withoutWhitespace);
+        String cleanPartido=getPartidosData().replaceAll("[\\s&&[^\\n]]+", " ").replaceAll("(?m)^\\s|\\s$", "").replaceAll("\\n+", "\n").replaceAll("^\n|\n$", "") ;
+        setPartidosData(cleanPartido);
     }
-    public void cargarPadron() throws IOException{
-        readFile();
-        //setContenidoArchivo(getContenidoArchivo());//
+    public void dataLoad() throws IOException{
+        readFile(this.filePath,this.partidosPath);
+
+        //setFileData(getFileData());
+        //setPartidosPath(partidosPath);
         spaceRemovers();
-        if (rutaArchivo.isEmpty()){
-            JOptionPane.showMessageDialog(null, "No se ha seleccionado un archivo valido");
+        if (filePath.isEmpty()){
+            JOptionPane.showMessageDialog(null, "No valid File selected");
         }
         else{
-        JOptionPane.showMessageDialog(null, "Data on File: "+"\n" +getContenidoArchivo());
+        JOptionPane.showMessageDialog(null, """
+                                            Data on Padron File: 
+                                            """+getFileData());
+        JOptionPane.showMessageDialog(null, """
+                                            Data on Partidos File: 
+                                            """ +getPartidosData());
     }
-    }
-    
-    
-    
-
-    /**
-     * @return the contenidoArchivo
-     */
-    public String getContenidoArchivo() {
-        return contenidoArchivo;
-    }
-
-    /**
-     * @param contenidoArchivo the contenidoArchivo to set
-     */
-    public void setContenidoArchivo(String contenidoArchivo) {
-        this.contenidoArchivo = contenidoArchivo;
     }
                                        
 }             
-           
-  
-     
-
+       
