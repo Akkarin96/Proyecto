@@ -7,13 +7,14 @@ package Classes;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.text.ParseException;
 import java.util.Scanner;
 import javax.swing.JOptionPane;
-
+import org.apache.commons.lang3.StringUtils;
 
 /**
  *
- * @author alba_
+ * @author josep
  */
 public class FileReader {
     String padronPath="";
@@ -70,7 +71,7 @@ public class FileReader {
             }
             
         } catch (FileNotFoundException e) {
-        System.out.println("Ha ocurrido un error =( ");
+        System.out.println("An error occurred.");
         e.printStackTrace();
     }
          
@@ -82,22 +83,31 @@ public class FileReader {
         String cleanPartido=getPartidosData().replaceAll("[\\s&&[^\\n]]+", " ").replaceAll("(?m)^\\s|\\s$", "").replaceAll("\\n+", "\n").replaceAll("^\n|\n$", "") ;
         setPartidosData(cleanPartido);
     }
-    public void dataLoad() throws IOException{
+    public void dataLoad() throws IOException, ParseException{
         readFile(this.padronPath,this.partidosPath);
 
         //setFileData(getFileData());
         //setPartidosPath(partidosPath);
         spaceRemovers();
-        if (padronPath.isEmpty()){
-            JOptionPane.showMessageDialog(null, "Archivo no valido >:v ");
+        if ((padronPath.isEmpty())||(partidosPath.isEmpty())){
+            JOptionPane.showMessageDialog(null, "Error: Uno o más archivos no fueron cargados");
         }
         else{
-            JOptionPane.showMessageDialog(null, "Archivos leidos exitosamente! :D ");
+             JOptionPane.showMessageDialog(null, "Archivos leidos exitosamente!");
+            
             }
-        CrearArreglo crearArrays=new CrearArreglo(padronData, partidosData);
-        crearArrays.crearArrays();    
+       
+       /* JOptionPane.showMessageDialog(null, """
+                                            Data on Padron File: 
+                                            """+getFileData());
+        JOptionPane.showMessageDialog(null, """
+                                            Data on Partidos File: 
+                                            """ +getPartidosData());*/
+       
     
     }
                                        
 }             
-       
+           
+  
+     
