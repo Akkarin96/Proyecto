@@ -7,7 +7,7 @@ package Classes;
 import java.io.File;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
-import org.apache.commons.io.FilenameUtils;
+import org.apache.commons.io.FilenameUtils; //permite obtener informacion del archivo
 
 /**
  *
@@ -23,13 +23,13 @@ public class FileChooser {
             if (status == JFileChooser.APPROVE_OPTION) {
                 File file = chooser.getSelectedFile();
                 if (file == null) {
-                    JOptionPane.showMessageDialog(null, "No File Selected!");
+                    JOptionPane.showMessageDialog(null, "No se selecciono archivo!");
                 }
                 else{
                     String fileExtension=fileUtils.getExtension(chooser.getSelectedFile().getAbsolutePath());
                     //JOptionPane.showMessageDialog(null, fileExtension);
                     if (!fileExtension.equals("txt")){
-                        JOptionPane.showMessageDialog(null, "Invalid File Type!");
+                        JOptionPane.showMessageDialog(null, "Archivo invalido!");
                     }
                 else{
                     fileName = chooser.getSelectedFile().getAbsolutePath();
@@ -38,4 +38,4 @@ public class FileChooser {
             }
         return fileName;
     }
-}
+} // se obtiene la direccion o ruta a la hora de seleccionar los archivos

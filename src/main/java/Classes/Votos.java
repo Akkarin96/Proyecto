@@ -8,7 +8,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.ZoneId;
-import java.time.format.DateTimeFormatter;
+
 import java.util.Date;
 import java.util.Random;
 import javax.swing.JOptionPane;
@@ -102,6 +102,7 @@ public class Votos {
             for(int y=0;y<=padron.length-1;y++){
             if (padron[y][8].equals(partidos[x][0])){
                 votos++;
+                //para recorrer el rarreglo con la informacion del padron cargada y que en la octava columna asigne la votacion
             }
             else if (padron[y][8].equals("nulo")){
                 setNulos(getNulos()+1);

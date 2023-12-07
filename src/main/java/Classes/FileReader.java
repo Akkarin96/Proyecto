@@ -10,7 +10,7 @@ import java.io.IOException;
 import java.text.ParseException;
 import java.util.Scanner;
 import javax.swing.JOptionPane;
-import org.apache.commons.lang3.StringUtils;
+
 
 /**
  *
@@ -58,7 +58,7 @@ public class FileReader {
             }
             while (myReader.hasNextLine()) {
                 data =data+"\n"+myReader.nextLine();
-                System.out.println(data);
+               
             }
             myReader.close();
             //Scanner myReader = new Scanner(myObj);
@@ -71,10 +71,10 @@ public class FileReader {
             }
             
         } catch (FileNotFoundException e) {
-        System.out.println("An error occurred.");
+        System.out.println("Ocurrio un error.");
         e.printStackTrace();
     }
-         
+         //Lee la informacipon delntro del archivo
   }
      
     private void spaceRemovers(){
@@ -97,14 +97,9 @@ public class FileReader {
             
             }
        
-       /* JOptionPane.showMessageDialog(null, """
-                                            Data on Padron File: 
-                                            """+getFileData());
-        JOptionPane.showMessageDialog(null, """
-                                            Data on Partidos File: 
-                                            """ +getPartidosData());*/
        
-    
+       
+    //verificar que se cargaron existosamente los archivos
     }
                                        
 }             

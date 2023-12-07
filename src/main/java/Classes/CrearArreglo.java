@@ -22,6 +22,7 @@ public class CrearArreglo {
     String[] partidosColumnas;
     String[][] padron;
     String[][] partidos;
+    int columnasPartidos=0;
 
      public CrearArreglo(String contenidoPadron,String contenidoPartidos){
         this.padronData=contenidoPadron;
@@ -80,16 +81,15 @@ public class CrearArreglo {
         return filasPartidos;
     }
 
-    public void setFilasPartidos(short filasPartidos) {
+    public void setFilasPartidos(int filasPartidos) {
         this.filasPartidos = filasPartidos;
     }
-    short columnasPartidos=0;
 
     public int getFilasPadron() {
         return filasPadron;
     }
 
-    public void setFilasPadron(short filasPadron) {
+    public void setFilasPadron(int filasPadron) {
         this.filasPadron = filasPadron;
     }
 
@@ -97,15 +97,15 @@ public class CrearArreglo {
         return columnasPadron;
     }
 
-    public void setColumnasPadron(short columnasPadron) {
+    public void setColumnasPadron(int columnasPadron) {
         this.columnasPadron = columnasPadron;
     }
 
-    public short getColumnasPartidos() {
+    public int getColumnasPartidos() {
         return columnasPartidos;
     }
 
-    public void setColumnasPartidos(short columnasPartidos) {
+    public void setColumnasPartidos(int columnasPartidos) {
         this.columnasPartidos = columnasPartidos;
     }
 
@@ -126,12 +126,12 @@ public class CrearArreglo {
     }
     
     private void ArraySize(String data,String contenido){//This method grabs the data from previous files, and defines how many rows/columns will be needed for both Padron/Partidos Array
-        short numeroFilas=0;
-        short numeroColumnas=0;
+        int numeroFilas=0;
+        int numeroColumnas=0;
         String[] filas = data.split("\\r?\\n|\\r");//splits lines into arrays
         String[] columnas=filas[0].split(",");//splits array into columns
-        numeroFilas=(short) (filas.length);
-        numeroColumnas=(short)(columnas.length+1);
+        numeroFilas=(filas.length);
+        numeroColumnas=(columnas.length+1);
         if(contenido.equals("padron")){
             setColumnasPadron(numeroColumnas);
             setFilasPadron(numeroFilas);

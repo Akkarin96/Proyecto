@@ -125,7 +125,7 @@ public class Menu {
                  ayuda.mensajeAyuda();
                  break;
              case 5:
-                 JOptionPane.showMessageDialog(null, "Gracias por usar el mensaje");
+                 JOptionPane.showMessageDialog(null, "Gracias por usar el sistema");
                  break;
              default:
                  JOptionPane.showMessageDialog(null, "Opcion invalida, intente de nuevo");                
