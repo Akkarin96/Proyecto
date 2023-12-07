@@ -1,6 +1,8 @@
 Classes\FileReader.class
 Classes\FileChooser.class
-Classes\CrearArreglo.class
-Classes\Votos.class
 Intermedio\Menu.class
+Classes\Consultas.class
+Classes\CrearArreglo.class
+Classes\Ayuda.class
+Classes\Votos.class
 com\mycompany\padron\Padron.class

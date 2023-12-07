@@ -45,7 +45,7 @@ public class Menu {
        int seleccion=0;
        while (seleccion<5) {
          do{   
-         seleccion=Integer.parseInt(JOptionPane.showInputDialog(null,"Select any of the following options:"+"\n"+
+         seleccion=Integer.parseInt(JOptionPane.showInputDialog(null,"Seleccione una de las siguientes opciones:"+"\n"+
                  "1- Iniciar Votaciones"+"\n"+
                  "2- Realizar Consultas"+"\n"+
                  "3- Imprimir Resultados de Votacion"+"\n"+
@@ -80,7 +80,7 @@ public class Menu {
                  }
                  else{
                     do{   
-                        tipoConsulta=Integer.parseInt(JOptionPane.showInputDialog(null,"Select any of the following options:"+"\n"+
+                        tipoConsulta=Integer.parseInt(JOptionPane.showInputDialog(null,"Seleccione una de las siguientes opciones:"+"\n"+
                         "1- Consulta por Nombres"+"\n"+
                         "2- Consulta por Primer Apellido"+"\n"+
                         "3- Consulta por Segundo Apellido"+"\n"+
@@ -125,10 +125,10 @@ public class Menu {
                  ayuda.mensajeAyuda();
                  break;
              case 5:
-                 JOptionPane.showMessageDialog(null, "Thanks for using our system");
+                 JOptionPane.showMessageDialog(null, "Gracias por usar el mensaje");
                  break;
              default:
-                 JOptionPane.showMessageDialog(null, "Invalid Option, Try again");                
+                 JOptionPane.showMessageDialog(null, "Opcion invalida, intente de nuevo");                
          }
         }
     }

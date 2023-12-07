@@ -23,13 +23,13 @@ public class FileChooser {
             if (status == JFileChooser.APPROVE_OPTION) {
                 File file = chooser.getSelectedFile();
                 if (file == null) {
-                    JOptionPane.showMessageDialog(null, "No se selecciono ningun archivo!");
+                    JOptionPane.showMessageDialog(null, "No File Selected!");
                 }
                 else{
                     String fileExtension=fileUtils.getExtension(chooser.getSelectedFile().getAbsolutePath());
-                    JOptionPane.showMessageDialog(null, fileExtension);
+                    //JOptionPane.showMessageDialog(null, fileExtension);
                     if (!fileExtension.equals("txt")){
-                        JOptionPane.showMessageDialog(null, "Formato no valido!");
+                        JOptionPane.showMessageDialog(null, "Invalid File Type!");
                     }
                 else{
                     fileName = chooser.getSelectedFile().getAbsolutePath();

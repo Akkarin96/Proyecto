@@ -8,7 +8,7 @@ import javax.swing.JOptionPane;
 
 /**
  *
- * @author josep
+ * @author alba_
  */
 public class CrearArreglo {
     String padronData="";
